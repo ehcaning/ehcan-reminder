@@ -1,0 +1,25 @@
+---
+name: CI
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: "0 8 * * *"
+
+jobs:
+  run:
+    name: "run"
+    runs-on: "ubuntu-latest"
+    steps:
+      - uses: "actions/checkout@v3"
+      - uses: "actions/setup-python@v3"
+        with:
+          python-version: '3.x'
+          cache: 'pip'
+      - run: pip install -r requirements.txt
+      - run: python main.py
+        env:
+          PUSHOVER_USER: ${{ secrets.PUSHOVER_USER }}
+          PUSHOVER_DEVICE: ${{ secrets.PUSHOVER_DEVICE }}
+          PUSHOVER_TOKEN: ${{ secrets.PUSHOVER_TOKEN }}
+          EVENTS_URL: ${{ secrets.EVENTS_URL }}
