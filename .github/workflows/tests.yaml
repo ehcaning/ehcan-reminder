@@ -1,0 +1,20 @@
+---
+name: Run tests
+
+on:
+  push:
+    branches:
+      - 'master'
+
+jobs:
+  run:
+    name: "test"
+    runs-on: "ubuntu-latest"
+    steps:
+      - uses: "actions/checkout@v3"
+      - uses: "actions/setup-python@v3"
+        with:
+          python-version: '3.x'
+          cache: 'pip'
+      - run: pip install -r requirements.txt
+      - run: python -m unittest discover -s . -p '*_test.py'
