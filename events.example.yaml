@@ -1,0 +1,10 @@
+events:
+- name: Wedding anniversary
+  date: 2021-12-01
+  notification:
+    title: 👰🏻‍♀️ Wedding Anniversary 💍
+    message: Happy anniversary
+  remind_on:
+    - 0
+    - -1
+    - -7
